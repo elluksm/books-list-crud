@@ -1,4 +1,79 @@
 body {
-    text-align: center;
-    background-color: #c5d4f0;
+  text-align: center;
+  background-color: #c5d4f0;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+/* Modal Content/Box */
+.modal__content {
+  position: relative;
+  background-color: #edeefc;
+  top: 10%;
+  margin: auto;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+}
+
+.modal__header {
+  padding: 2px 16px;
+  background-color: #5e2b75;
+  color: white;
+}
+
+.modal__body {
+  padding: 2px 16px;
+}
+
+.button--close {
+  color: #aaa;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.button--close:hover,
+.button--close:focus {
+  color: #230730;
+  cursor: pointer;
+}
+
+
+/* Animations */
+@-webkit-keyframes slideIn {
+  from {
+    top: -300px;
+    opacity: 0;
   }
+  to {
+    top: 10%;
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 10%;
+    opacity: 1;
+  }
+}

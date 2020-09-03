@@ -49,3 +49,31 @@ getBooks().then((books) => {
   generateTableHead(table, dataKeys);
   generateTableData(table, books, dataKeys);
 });
+
+let modal = document.getElementById("booksModal");
+
+const openModal = () => {
+  //display modal window
+  modal.style.display = "block";
+  // When the user clicks anywhere outside of the modal, close it
+  window.addEventListener("click", outsideModalClickListener);
+  window.addEventListener("keydown", escapeKeyListener);
+};
+
+const closeModal = () => {
+  modal.style.display = "none";
+  window.removeEventListener("click", outsideModalClickListener);
+  window.removeEventListener("keydown", escapeKeyListener);
+};
+
+const outsideModalClickListener = (event) => {
+  if (event.target == modal) {
+    closeModal();
+  }
+};
+
+const escapeKeyListener = (event) => {
+    if (event.key == "Escape") {
+      closeModal();
+    }
+  };

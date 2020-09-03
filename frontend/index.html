@@ -9,10 +9,31 @@
     <title>Mega Lorem Ipsum</title>
   </head>
   <body>
-    <h1>Mega Lorem Ipsum</h1>
-    <h2>Books List</h2>
-    <table id="booksTable">
-      <!-- books list data -->
-    </table>
+    
+    <!-- Main content -->
+    <div>
+      <h1>Mega Lorem Ipsum</h1>
+      <h2>Books List</h2>
+      <button type="button" id="newBookButton" onclick="openModal();">
+        New Book
+      </button>
+      <table id="booksTable">
+        <!-- books list data -->
+      </table>
+    </div>
+
+    <!-- The Pop-up window -->
+    <div id="booksModal" class="modal">
+      <div class="modal__content">
+        <div class="modal__header">
+          <span class="button--close" onclick="closeModal();">&times;</span>
+          <h2>Modal Header</h2>
+        </div>
+        <div class="modal__body">
+          <p>Some text in the Modal Body</p>
+          <p>Some other text...</p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
