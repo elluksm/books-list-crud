@@ -1,13 +1,62 @@
 body {
-  text-align: center;
   background-color: #c5d4f0;
+  margin: 1%;
+}
+
+.title {
+  text-align: center;
+  color: #3e5f9c;
+}
+
+.button {
+    border: none;
+    border-radius: .25rem;
+    margin-bottom: 1%;
+    padding: 10px;
+    color: #fff;
+}
+
+.button--success {
+    background-color: #28a745;
+}
+.button--success:hover {
+    background-color: #218838;
+}
+
+.button--danger {
+    background-color: #dc3545;
+}
+.button--danger:hover {
+    background-color: #c82333;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #789de2;
+}
+
+td,
+th {
+  border-bottom: 1px solid #999;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #b4cbf5;
 }
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.8s ease-in-out;
   position: fixed;
-  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
@@ -16,17 +65,29 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+}
 
 /* Modal Content/Box */
 .modal__content {
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  z-index: -1;
   position: relative;
   background-color: #edeefc;
   top: 10%;
   margin: auto;
   width: 80%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-animation-name: slideIn;
-  -webkit-animation-duration: 0.4s;
+}
+
+.modal__content.show {
+  visibility: visible;
+  z-index: 1;
+  opacity: 1;
   animation-name: slideIn;
   animation-duration: 0.5s;
 }
@@ -54,9 +115,8 @@ body {
   cursor: pointer;
 }
 
-
 /* Animations */
-@-webkit-keyframes slideIn {
+@keyframes slideIn {
   from {
     top: -300px;
     opacity: 0;
@@ -67,13 +127,50 @@ body {
   }
 }
 
-@keyframes slideIn {
-  from {
-    top: -300px;
-    opacity: 0;
+/* Responsive styles */
+@media only screen and (max-width: 760px) {
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
   }
-  to {
-    top: 10%;
-    opacity: 1;
+
+  thead tr {
+    display: none;
+  }
+
+  tr:nth-child(odd) {
+    background: #ccc;
+  }
+
+  td {
+    position: relative;
+    padding-left: 35%;
+  }
+
+  td:before {
+    position: absolute;
+    left: 1%;
+    font-weight: bold;
+  }
+
+  #booksTable td:nth-of-type(1):before {
+    content: "author";
+  }
+  #booksTable td:nth-of-type(2):before {
+    content: "title";
+  }
+  #booksTable td:nth-of-type(3):before {
+    content: "yearPublished";
+  }
+  #booksTable td:nth-of-type(4):before {
+    content: "publisher";
+  }
+  #booksTable td:nth-of-type(5):before {
+    content: "summary";
   }
 }

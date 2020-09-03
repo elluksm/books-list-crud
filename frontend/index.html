@@ -9,13 +9,17 @@
     <title>Mega Lorem Ipsum</title>
   </head>
   <body>
-    
     <!-- Main content -->
     <div>
-      <h1>Mega Lorem Ipsum</h1>
+      <h1 class="title">Mega Lorem Ipsum</h1>
       <h2>Books List</h2>
-      <button type="button" id="newBookButton" onclick="openModal();">
-        New Book
+      <button
+        type="button"
+        id="newBookButton"
+        class="button button--success"
+        onclick="openModal();"
+      >
+        Add New Book
       </button>
       <table id="booksTable">
         <!-- books list data -->
@@ -24,7 +28,7 @@
 
     <!-- The Pop-up window -->
     <div id="booksModal" class="modal">
-      <div class="modal__content">
+      <div id="booksModalContent" class="modal__content">
         <div class="modal__header">
           <span class="button--close" onclick="closeModal();">&times;</span>
           <h2>Modal Header</h2>

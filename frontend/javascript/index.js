@@ -46,22 +46,26 @@ getBooks().then((books) => {
 
   let table = document.getElementById("booksTable");
   let dataKeys = ["author", "title", "yearPublished", "publisher", "summary"];
-  generateTableHead(table, dataKeys);
   generateTableData(table, books, dataKeys);
+  generateTableHead(table, dataKeys);
 });
 
 let modal = document.getElementById("booksModal");
+let content = document.getElementById("booksModalContent");
 
 const openModal = () => {
-  //display modal window
-  modal.style.display = "block";
-  // When the user clicks anywhere outside of the modal, close it
+  //display modal window and its content
+  modal.classList.add("show");
+  content.classList.add("show");
+
+  // close modal when the user clicks anywhere outside of the modal or press Escape key
   window.addEventListener("click", outsideModalClickListener);
   window.addEventListener("keydown", escapeKeyListener);
 };
 
 const closeModal = () => {
-  modal.style.display = "none";
+  modal.classList.remove("show");
+  content.classList.remove("show");
   window.removeEventListener("click", outsideModalClickListener);
   window.removeEventListener("keydown", escapeKeyListener);
 };
@@ -73,7 +77,7 @@ const outsideModalClickListener = (event) => {
 };
 
 const escapeKeyListener = (event) => {
-    if (event.key == "Escape") {
-      closeModal();
-    }
-  };
+  if (event.key == "Escape") {
+    closeModal();
+  }
+};
