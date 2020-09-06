@@ -28,8 +28,8 @@ class Table {
       let cell = row.insertCell();
       let editButton = document.createElement("button");
       editButton.setAttribute("data-id", element._id);
-      editButton.className = "button button--info button__edit";
-      editButton.textContent = "Edit";
+      editButton.className = "button button__edit";
+      editButton.textContent = "";
       cell.appendChild(editButton);
     });
   };

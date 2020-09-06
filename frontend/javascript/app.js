@@ -30,8 +30,7 @@ class BooksApp {
 
   renderBooksList = () => {
     this.client.getBooks().then((books) => {
-      console.log(books[0]);
-
+      this.tableContainer.innerHTML = "";
       this.table.generateTableData(books, this.dataKeys);
       this.table.generateTableHead(this.tableHeadings);
 
@@ -49,6 +48,8 @@ class BooksApp {
   };
 
   displayEditBookForm = (id) => {
+
+    // history.pushState({page: 1}, "", '/page2.php')
     this.openBookForm();
     const item = this.books.find((item) => item._id === id);
     if (item) {
@@ -127,15 +128,19 @@ class BooksApp {
 
   submitBookForm = (e) => {
     e.preventDefault();
-    this.authorInput = document.getElementById("authorInput");
-    const newAuthor = authorInput.value;
-    console.log(newAuthor);
-
     const bookId = e.target.getAttribute("data-id");
     if (bookId) {
-      console.log("Book edited: " + bookId);
+      let updatedBook = this.getFormValues();
+      this.client.updateBook(bookId, updatedBook).then(() => {
+        console.log("Book edited: " + bookId);
+        this.renderBooksList();
+      });
     } else {
-      console.log("New Book Created");
+      let newBook = this.getFormValues();
+      this.client.createBook(newBook).then(() => {
+        console.log("New Book Created");
+        this.renderBooksList();
+      });
     }
     this.closeModal();
   };
@@ -146,8 +151,19 @@ class BooksApp {
 
   deleteBook = (e) => {
     const bookId = this.form.getAttribute("data-id");
-    console.log("Book:deleted " + bookId);
+    this.client.deleteBook(bookId).then(() => {
+      console.log("Book deleted: " + bookId);
+      this.renderBooksList();
+    });
     this.closeModal();
+  };
+
+  getFormValues = () => {
+    let book = {};
+    this.dataKeys.forEach((key) => {
+      book[key] = document.getElementById(`${key}Input`).value;
+    });
+    return book;
   };
 
   clearFormValues = () => {
