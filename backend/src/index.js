@@ -36,20 +36,26 @@ app.post('/api/books', (req, res) => {
   book.registered = new Date();
   book._id = id;
 
-  req.context.models.books[id] = book;
+  req.context.models.books.push(book);
 
   return res.send(book);
 });
 
-app.delete('/api/books/:bookId', (req, res) => {
-  const {
-    [req.params.bookId]: book,
-    ...otherBooks
-  } = req.context.models.books;
-
-  req.context.models.books = otherBooks;
-
+app.put('/api/books/:bookId', (req, res) => {
+  const book = req.body;
+  const id = req.params.bookId;
+ 
+  const oldBook = _.find(req.context.models.books, {_id:id});
+  Object.assign(oldBook, book );
+  
   return res.send(book);
+});
+
+app.delete('/api/books/:bookId', (req, res) => {
+  let id = req.params.bookId;
+  _.remove(req.context.models.books, {_id:id})
+  
+  return res.send();
 });
 
 app.listen(process.env.PORT, () =>
