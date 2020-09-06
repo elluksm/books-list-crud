@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="Books List" content="Books List - Mega Lorem Ipsum" />
     <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/modal.css" />
     <script defer src="./javascript/client.js"></script>
     <script defer src="./javascript/table.js"></script>
     <script defer src="./javascript/app.js"></script>
@@ -15,29 +16,62 @@
     <!-- Main content -->
     <div>
       <h1 class="title">Mega Lorem Ipsum</h1>
-      <h2>Books List</h2>
-      <button
-        type="button"
-        id="newBookButton"
-        class="button button--success"
-      >
+      <h2 class="subtitle">Books List</h2>
+      <button type="button" id="newBookButton" class="button button--success">
         Add New Book
       </button>
-      <table id="booksTable">
+      <table id="booksList">
         <!-- books list data -->
       </table>
     </div>
 
     <!-- The Pop-up window -->
-    <div id="booksModal" class="modal">
-      <div id="booksModalContent" class="modal__content">
+    <div id="bookFormModal" class="modal">
+      <div class="modal__content">
         <div class="modal__header">
-          <span id="closeModalButton" class="button--close">&times;</span>
-          <h2>Modal Header</h2>
+          <span id="closeFormModalButton" class="button--close">&times;</span>
+          <h2>Book Item</h2>
         </div>
         <div class="modal__body">
-          <p>Some text in the Modal Body</p>
-          <p>Some other text...</p>
+          <form id="bookForm">
+            <div class="form__input">
+              <label for="authorInput">Author</label>
+              <input type="text" id="authorInput" />
+            </div>
+            <div class="form__input">
+              <label for="titleInput">Title</label>
+              <input type="text" id="titleInput" />
+            </div>
+            <div class="form__input">
+              <label for="yearPublishedInput">Year</label>
+              <input type="number" id="yearPublishedInput" />
+            </div>
+            <div class="form__input">
+              <label for="publisherInput">Publisher</label>
+              <input type="text" id="publisherInput" />
+            </div>
+            <div class="form__input">
+              <label for="summaryInput">Summary</label>
+              <textarea id="summaryInput" rows="6"></textarea>
+            </div>
+            <div class="button__container">
+                <div>
+                    <button
+                    type="button"
+                    id="deleteBookButton"
+                    class="button button--danger"
+                  >
+                    Delete Book
+                  </button>
+                </div>
+            <div>
+                <button id="cancelFormButton" type="button" class="button button--info">
+                  Cancel
+                </button>
+                <button type="submit" class="button button--success">Save</button>
+            </div>
+          </form>
+        </div>
         </div>
       </div>
     </div>

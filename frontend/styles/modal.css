@@ -1,0 +1,104 @@
+/* The Modal (background) */
+.modal {
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.8s ease-in-out;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Modal Content/Box */
+.modal__content {
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  z-index: -1;
+  position: relative;
+  background-color: #edeefc;
+  top: 10%;
+  margin: auto;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal__content.show {
+  visibility: visible;
+  z-index: 1;
+  opacity: 1;
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+}
+
+.modal__header {
+  padding: 2px 16px;
+  background-color: #5e2b75;
+  color: white;
+  text-align: center;
+}
+
+.modal__body {
+  padding: 20px;
+}
+
+.button--close {
+  color: #aaa;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.button--close:hover,
+.button--close:focus {
+  color: #230730;
+  cursor: pointer;
+}
+
+.form__input {
+  margin: 2% 0;
+}
+
+.form__input input, textarea {
+  display: block;
+  border: 1px solid #ced4da;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.button__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#deleteBookButton {
+  visibility: hidden;
+}
+/* Animations */
+@keyframes slideIn {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 10%;
+    opacity: 1;
+  }
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 900px) {
+  .modal__content {
+    width: 90%;
+  }
+}

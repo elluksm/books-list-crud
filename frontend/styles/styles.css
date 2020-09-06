@@ -8,26 +8,38 @@ body {
   color: #3e5f9c;
 }
 
+.subtitle {
+  display: inline-block;
+  margin: 1.5%;
+}
+
 .button {
-    border: none;
-    border-radius: .25rem;
-    margin-bottom: 1%;
-    padding: 10px;
-    color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  margin: 2px;
+  padding: 10px;
+  color: #fff;
 }
 
 .button--success {
-    background-color: #28a745;
+  background-color: #28a745;
 }
 .button--success:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
 .button--danger {
-    background-color: #dc3545;
+  background-color: #dc3545;
 }
 .button--danger:hover {
-    background-color: #c82333;
+  background-color: #c82333;
+}
+
+.button--info {
+  background-color: #007bff;
+}
+.button--info:hover {
+  background-color: #0069d9;
 }
 
 /* Table */
@@ -48,83 +60,6 @@ th {
 
 tbody tr:nth-child(odd) {
   background-color: #b4cbf5;
-}
-
-/* The Modal (background) */
-.modal {
-  visibility: hidden; /* Hidden by default */
-  opacity: 0;
-  z-index: -1;
-  transition: all 0.8s ease-in-out;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.modal.show {
-  visibility: visible;
-  opacity: 1;
-  z-index: 1;
-}
-
-/* Modal Content/Box */
-.modal__content {
-  visibility: hidden; /* Hidden by default */
-  opacity: 0;
-  z-index: -1;
-  position: relative;
-  background-color: #edeefc;
-  top: 10%;
-  margin: auto;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.modal__content.show {
-  visibility: visible;
-  z-index: 1;
-  opacity: 1;
-  animation-name: slideIn;
-  animation-duration: 0.5s;
-}
-
-.modal__header {
-  padding: 2px 16px;
-  background-color: #5e2b75;
-  color: white;
-}
-
-.modal__body {
-  padding: 2px 16px;
-}
-
-.button--close {
-  color: #aaa;
-  float: right;
-  font-size: 35px;
-  font-weight: bold;
-}
-
-.button--close:hover,
-.button--close:focus {
-  color: #230730;
-  cursor: pointer;
-}
-
-/* Animations */
-@keyframes slideIn {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 10%;
-    opacity: 1;
-  }
 }
 
 /* Responsive styles */
@@ -158,19 +93,19 @@ tbody tr:nth-child(odd) {
     font-weight: bold;
   }
 
-  #booksTable td:nth-of-type(1):before {
-    content: "author";
+  #booksList td:nth-of-type(1):before {
+    content: "Author";
   }
-  #booksTable td:nth-of-type(2):before {
-    content: "title";
+  #booksList td:nth-of-type(2):before {
+    content: "Title";
   }
-  #booksTable td:nth-of-type(3):before {
-    content: "yearPublished";
+  #booksList td:nth-of-type(3):before {
+    content: "Year";
   }
-  #booksTable td:nth-of-type(4):before {
-    content: "publisher";
+  #booksList td:nth-of-type(4):before {
+    content: "Publisher";
   }
-  #booksTable td:nth-of-type(5):before {
-    content: "summary";
+  #booksList td:nth-of-type(5):before {
+    content: "Summary";
   }
 }

@@ -1,1 +1,1 @@
-window.addEventListener('load', () => new BooksApp());
+window.addEventListener("load", () => new BooksApp());
