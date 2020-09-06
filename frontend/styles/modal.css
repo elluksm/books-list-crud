@@ -2,7 +2,7 @@
 .modal {
   visibility: hidden; /* Hidden by default */
   opacity: 0;
-  z-index: -1;
+  /* z-index: 1; */
   transition: all 0.8s ease-in-out;
   position: fixed;
   left: 0;
@@ -16,7 +16,6 @@
 .modal.show {
   visibility: visible;
   opacity: 1;
-  z-index: 1;
 }
 
 /* Modal Content/Box */

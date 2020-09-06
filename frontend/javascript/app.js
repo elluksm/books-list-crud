@@ -24,11 +24,18 @@ class BooksApp {
     this.client = new BooksWebClient("http://localhost:3000/api");
     this.table = new Table(this.tableContainer);
 
+    let urlId = null;
+    const url = new URL(window.location.href);
+    if (url.pathname.length > 1) {
+      const pathpart = url.pathname.split("/");
+      urlId = pathpart[1];
+    }
+
     //Load and render books list
-    this.renderBooksList();
+    this.renderBooksList(urlId);
   }
 
-  renderBooksList = () => {
+  renderBooksList = (openBookId) => {
     this.client.getBooks().then((books) => {
       this.tableContainer.innerHTML = "";
       this.table.generateTableData(books, this.dataKeys);
@@ -38,18 +45,21 @@ class BooksApp {
       Array.from(document.getElementsByClassName("button__edit")).forEach(
         (element) => {
           element.addEventListener("click", (e) => {
-            this.displayEditBookForm(element.getAttribute("data-id"));
+            let id = element.getAttribute("data-id");
+            history.pushState({ id: id }, "", `/${id}`);
+            this.displayEditBookForm(id);
           });
         }
       );
 
       this.books = books;
+      if (openBookId) {
+        this.displayEditBookForm(openBookId);
+      }
     });
   };
 
   displayEditBookForm = (id) => {
-
-    // history.pushState({page: 1}, "", '/page2.php')
     this.openBookForm();
     const item = this.books.find((item) => item._id === id);
     if (item) {
@@ -68,7 +78,7 @@ class BooksApp {
     this.openModal();
     this.form = document.getElementById("bookForm");
     this.form.addEventListener("submit", this.submitFormListener);
-
+    
     this.cancelButton = document.getElementById("cancelFormButton");
     this.cancelButton.addEventListener("click", this.closeButtonListener);
   };
@@ -91,6 +101,7 @@ class BooksApp {
   };
 
   closeModal = () => {
+    history.pushState({}, "", "/");
     this.clearFormValues();
     this.modalContainer.classList.remove("show");
     this.modalContent.classList.remove("show");
@@ -161,7 +172,12 @@ class BooksApp {
   getFormValues = () => {
     let book = {};
     this.dataKeys.forEach((key) => {
-      book[key] = document.getElementById(`${key}Input`).value;
+      const inputElement = document.getElementById(`${key}Input`);
+      if (inputElement.type === "number") {
+        book[key] = parseInt(inputElement.value);
+      } else {
+        book[key] = inputElement.value;
+      }
     });
     return book;
   };
